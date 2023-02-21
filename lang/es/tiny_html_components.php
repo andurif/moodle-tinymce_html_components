@@ -22,10 +22,10 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['pluginname'] = 'Extensión componentes HTML para TinyMCE';
+$string['pluginname'] = 'Extensión html componentes para TinyMCE';
 $string['pluginname_help'] = 'Extensión para ayudar usted a agregar componentes (bootstrap por ejemplo) en el editor TinyMCE.';
 $string['html_components:desc'] = 'Agregar componentes html';
-$string['html_components:title'] = 'Agregar componentes html';
+$string['title'] = 'Agregar componentes html';
 
 $string['choice_legend'] = 'Elija el componente';
 $string['component'] = 'Componente :';
@@ -46,11 +46,11 @@ $string['custom_components_back'] = 'Volver a la lista de sus componentes person
 $string['custom_components_preview_msg'] = '<div class="alert alert-info">Vista previa disponible después de la validación !</div>';
 $string['alert'] = 'Alerta';
 $string['alert_type'] = 'Tipo de alerta :';
-$string['alert_info'] = 'Información (cyan)';
+$string['alert_info'] = 'Información (azul)';
 $string['alert_warning'] = 'Advertencia (amarillo)';
 $string['alert_success'] = 'Exito (verde)';
 $string['alert_danger'] = 'Error/peligro (rojo)';
-$string['alert_primary'] = 'Información principal (azul)';
+$string['alert_primary'] = 'Información principal (azul html)';
 $string['alert_secondary'] = 'Información secondaria (gris)';
 $string['alert_dark'] = 'Dark (negro)';
 $string['alert_close'] = 'Posibilidad de cerrar la alerta :';
@@ -61,18 +61,21 @@ $string['card_display_horizontal'] = 'Lado a lado';
 $string['card_display_vertical'] = 'En columna';
 $string['card_background'] = 'Tipo de fondo :';
 $string['card_image'] = 'Imagen';
-$string['card_classic'] = 'Classic (blanco)';
+$string['card_classic'] = 'Classico (blanco)';
 $string['card_orientation'] = 'Orientación de las viñetas : ';
 $string['card_orientation_portrait'] = 'Retrato';
 $string['card_orientation_landscape'] = 'Paisaje';
-$string['card_disposition'] = 'Disposición de las viñetas : ';
+$string['card_disposition'] = 'Ancho de las viñetas : ';
 $string['card_disposition_line'] = ' por linea';
+$string['card_disposition_info'] = 'Nota: Esta opción se utilizará de forma predeterminada, pero se adaptará para agregar más legibilidad en función de su pantalla (diseño responsive)';
+$string['card_proportion'] = 'Proportion de l\'image :';
 $string['jumbotron'] = 'Jumbrotron';
 $string['accordion'] = 'Acordéon';
 $string['accordion_nb'] = 'Número de lineas :';
-$string['accordion_show'] = 'Dejar lineas ocultas';
+$string['accordion_show'] = 'Dejar las lineas ocultas';
 $string['nav'] = 'Menu de navigacion';
 $string['nav_nb'] = 'Número de iperenlaces :';
+$string['quote'] = 'Cita';
 $string['button'] = 'Botón';
 $string['button_nb'] = 'Número de botones :';
 $string['button_type'] = 'Tipo de botón :';
@@ -90,5 +93,25 @@ $string['button_tooltip_top'] = 'Sobre';
 $string['button_tooltip_right'] = 'Derecha';
 $string['button_tooltip_bottom'] = 'Abajo';
 $string['button_tooltip_left'] = 'Izquierda';
+$string['button_dropdown'] = 'Lista desplegable';
+$string['button_dropdown_nb'] = 'Número de iperenlaces :';
+$string['icon'] = 'Icono';
+$string['icon_name'] = 'Nombre del icono : ';
+$string['icon_desc'] = 'Ingrese el nombre del icono para insertar. Por ejemplo: "qr_code_scanner" o "check_circle".
+                    <br/>Encuentra <a href="https://fonts.google.com/icons?selected=Material+Icons" target="_blank" style="font-size: larger; color: #5FC6CC;">los diferentes iconos compatibles aquí</a>.';
+$string['icon_size'] = 'Tamaño del icono : ';
+$string['timeline'] = 'Timeline';
+$string['timeline_nb'] = 'Número de elementes : ';
+$string['timeline_orientation'] = 'Orientacion : ';
+$string['timeline_horizontal'] = 'Horizontal';
+$string['timeline_vertical'] = 'Vertical';
+$string['timeline_position'] = 'Positionnement de la timeline :';
+$string['timeline_position_before'] = 'Au-dessus des élements de texte';
+$string['timeline_position_after'] = 'En-dessous des élements de texte';
 $string['preview_legend'] = 'Avance';
 $string['preview_desc'] = 'El avance del componente le permite visualizar los componentes que se mostrarán en la página. Esta visualización puede ser un poco diferente al render final según el tema, las opciones, etc...';
+$string['suggestion'] = 'Si ve que un componente de arranque no está aquí o quiere proponer un nuevo componente, complete este <a href="%s" target="_blank">formulario de sugerencia</a>. Su solicitud será vista por el grupo Moodle.';
+$string['insert'] = 'Insertar';
+$string['privacy:metadata:tiny_html_components_custom'] = 'tabla que almacena componentes individuales y personalizados creados por los usuarios';
+$string['privacy:metadata:tiny_html_components_custom:userid'] = 'Id del usuario que creó el componente';
+$string['privacy:metadata:tiny_html_components_custom:content'] = 'El código HTML del componente personalizado.';
