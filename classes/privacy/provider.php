@@ -14,9 +14,19 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Privacy Subsystem implementation for the html_components plugin for TinyMCE.
+ *
+ * @package tiny_html_components
+ * @author  2023 Cédric Gerbault, Anthony Durif
+ * @copyright 2023 Cédric Gerbault, Anthony Durif, Université Clermont Auvergne
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace tiny_html_components\privacy;
 
 use core_privacy\local\metadata\collection;
+
 /**
  * Privacy Subsystem implementation for the html_components plugin for TinyMCE.
  *

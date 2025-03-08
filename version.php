@@ -13,14 +13,16 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Plugin for Moodle tinymce html_components.
  *
- * @package    tinymce_html_components
+ * @package    tiny_html_components
  * @author  2023 Anthony Durif, Gerbault Cédric
  * @copyright 2023 Anthony Durif,Gerbault Cédric Université Clermont Auvergne
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2025030201; // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires = 2022112801; // 2017111300 is Moodle 3.4.0.

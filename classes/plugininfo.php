@@ -14,6 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Tiny html_component plugin for Moodle.
+ *
+ * @package    tiny_html_components
+ * @copyright  2023 Gerbault Cédric, Anthony Durif, Université Clermont Auvergne
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 namespace tiny_html_components;
 
 use context;
@@ -22,9 +30,6 @@ use editor_tiny\plugin_with_buttons;
 use editor_tiny\plugin_with_menuitems;
 use editor_tiny\plugin_with_configuration;
 
-
-
-
 /**
  * Tiny html_component plugin for Moodle.
  *
@@ -32,13 +37,10 @@ use editor_tiny\plugin_with_configuration;
  * @copyright  2023 Gerbault Cédric, Anthony Durif, Université Clermont Auvergne 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
 class plugininfo extends plugin implements
     plugin_with_buttons,
     plugin_with_menuitems,
     plugin_with_configuration {
-    
-
 
     public static function get_available_buttons(): array {
         return [
@@ -81,10 +83,8 @@ class plugininfo extends plugin implements
         $customs = $DB->get_records('tiny_html_components_custom', array('userid' => $USER->id), 'name ASC');
         
         if ($customs) {
-            
             $customComponents = [];
             foreach ($customs as $custom) {
-                
                 array_push($customComponents,[
                     'value' => 'custom',
                     'custom-component' => $custom->code,
@@ -93,11 +93,8 @@ class plugininfo extends plugin implements
                 ]);
             }
             return json_encode($customComponents);
-        }
-        else{
+        } else {
             return null;
         }
-
-        
     }
 }

@@ -14,9 +14,24 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+/**
+ * Creation/Edition custom component form.
+ *
+ * @package tiny_html_components
+ * @author  2021 Cédric Gerbault, Anthony Durif
+ * @copyright 2025 Cédric Gerbault, Anthony Durif, Université Clermont Auvergne
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 require_once("$CFG->libdir/formslib.php");
 
-
+/**
+ * Class custom_component_form
+ *
+ * @package tiny_html_components
+ * @copyright 2025 Cédric Gerbault, Anthony Durif, Université Clermont Auvergne
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
 class custom_component_form extends moodleform
 {
     protected function definition()

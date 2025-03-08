@@ -17,7 +17,7 @@
 /**
  * Plugin upgrade script.
  *
- * @package  tinymce_html_components
+ * @package  tiny_html_components
  * @author  2021 Anthony Durif
  * @copyright 2021 Anthony Durif, Université Clermont Auvergne
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later

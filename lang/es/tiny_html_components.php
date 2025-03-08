@@ -16,7 +16,7 @@
 
 /**
  *
- * @package    tiny_html_components
+ * @package  tiny_html_components
  * @author  2020 Anthony Durif
  * @copyright 2020 Anthony Durif, Université Clermont Auvergne
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
