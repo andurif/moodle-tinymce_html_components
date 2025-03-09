@@ -42,29 +42,45 @@ class plugininfo extends plugin implements
     plugin_with_menuitems,
     plugin_with_configuration {
 
+    /**
+     * Get a list of the buttons provided by this plugin.
+     *
+     * @return string[]
+     */
     public static function get_available_buttons(): array {
         return [
             'tiny_html_components/html_componentstiny_html_components',
         ];
     }
 
+    /**
+     * Get a list of the menu items provided by this plugin.
+     *
+     * @return string[]
+     */
     public static function get_available_menuitems(): array {
         return [
             'tiny_html_components/html_componentstiny_html_components',
         ];
     }
 
+    /**
+     * Get a list of the menu items provided by this plugin.
+     *
+     * @param context $context The context that the editor is used within.
+     * @param array $options The options passed in when requesting the editor.
+     * @param array $fpoptions The filepicker options passed in when requesting the editor.
+     * @param ?\editor_tiny\editor $editor The editor instance in which the plugin is initialised.
+     * @return array
+     */
     public static function get_plugin_configuration_for_context(
         context $context,
         array $options,
         array $fpoptions,
         ?\editor_tiny\editor $editor = null
     ): array {
-
-        $customContent = self :: getAvailableComponents() ;
-
         return [
-            'customcomponents' => $customContent,
+            'customcomponents' => self::getAvailableComponents(),
         ];
     }
 
@@ -79,20 +95,19 @@ class plugininfo extends plugin implements
         global $DB;
         global $USER;
 
+        $customs = $DB->get_records('tiny_html_components_custom', ['userid' => $USER->id], 'name ASC');
 
-        $customs = $DB->get_records('tiny_html_components_custom', array('userid' => $USER->id), 'name ASC');
-        
         if ($customs) {
-            $customComponents = [];
+            $custom_components = [];
             foreach ($customs as $custom) {
-                array_push($customComponents,[
+                array_push($custom_components, [
                     'value' => 'custom',
                     'custom-component' => $custom->code,
                     'custom-component-content' => htmlspecialchars($custom->content),
-                    'name' => $custom -> name,
+                    'name' => $custom->name,
                 ]);
             }
-            return json_encode($customComponents);
+            return json_encode($custom_components);
         } else {
             return null;
         }

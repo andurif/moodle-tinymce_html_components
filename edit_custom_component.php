@@ -40,29 +40,34 @@ $PAGE->set_context($context);
 
 $PAGE->set_pagelayout('profile');
 if ($id) {
-    $PAGE->set_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php', array('id' => $id));
+    $PAGE->set_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php', ['id' => $id]);
     $PAGE->set_title(fullname($USER));
     $PAGE->set_heading($PAGE->title);
-    $PAGE->navbar->add(get_string('profile', 'moodle'), new moodle_url('/user/profile.php', array('id' => $USER->id)));
-    $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'), new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
-    $PAGE->navbar->add(get_string('custom_components_edit', 'tiny_html_components'), new moodle_url('lib/editor/tiny/plugins/html_components/edit_custom_components.php', array('id' => $id)));
+    $PAGE->navbar->add(get_string('profile', 'moodle'),
+        new moodle_url('/user/profile.php', ['id' => $USER->id]));
+    $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'),
+        new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
+    $PAGE->navbar->add(get_string('custom_components_edit', 'tiny_html_components'),
+        new moodle_url('lib/editor/tiny/plugins/html_components/edit_custom_components.php', ['id' => $id]));
 } else {
     $PAGE->set_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php');
     $PAGE->set_title(fullname($USER));
     $PAGE->set_heading($PAGE->title);
-    $PAGE->navbar->add(get_string('profile', 'moodle'), new moodle_url('/user/profile.php', array('id' => $USER->id)));
-    $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'), new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
+    $PAGE->navbar->add(get_string('profile', 'moodle'),
+        new moodle_url('/user/profile.php', ['id' => $USER->id]));
+    $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'),
+        new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
 }
 
 echo $OUTPUT->header();
 
 echo html_writer::tag('h2', get_string('custom_components_edit', 'tiny_html_components'));
 
-$component = ($id) ? $DB->get_record('tiny_html_components_custom', array('id' => $id), '*', MUST_EXIST) : null;
-$form = new custom_component_form($PAGE->url, array('component' => $component));
+$component = ($id) ? $DB->get_record('tiny_html_components_custom', ['id' => $id], '*', MUST_EXIST) : null;
+$form = new custom_component_form($PAGE->url, ['component' => $component]);
 
 if ($form->is_cancelled()) {
-    //Annulation du formulaire
+    // Form cancelled.
     redirect($PAGE->url);
     exit;
 } else {
@@ -80,10 +85,10 @@ if ($form->is_cancelled()) {
         }
 
         if ($id !== false) {
-            redirect(new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php', array('id' => $id)));
+            redirect(new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php', ['id' => $id]));
         }
     } else {
-        //Affichage du formulaire
+        // Form display.
         $form->display();
     }
 }

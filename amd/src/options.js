@@ -23,7 +23,7 @@
 import {getPluginOptionName} from 'editor_tiny/options';
 import {pluginName} from './common';
 
-const customcomponents= getPluginOptionName(pluginName, 'customcomponents');
+const customcomponents = getPluginOptionName(pluginName, 'customcomponents');
 
 /**
  * Register the options for the Tiny html_components plugin.

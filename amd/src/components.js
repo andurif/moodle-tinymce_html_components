@@ -22,15 +22,15 @@
 
 const components = [
     {
-        id : 0,
+        id: 0,
         name: "accordion",
-        params :true,
-        code: function () {
+        params: true,
+        code: function() {
             var nb_collapse = document.getElementById('collapse_nb').value;
             var collapse_class = (!document.querySelector('input[name="collapse_show"]').checked) ? "collapse show" : "collapse";
-            var uniq ='_' + Math.random().toString(36).substring(2, 9);
-            var txt ="<div class='accordion' id='accordion"+ uniq +"'>";
-            for (var i = 1; i <= nb_collapse; i++){
+            var uniq = '_' + Math.random().toString(36).substring(2, 9);
+            var txt = "<div class='accordion' id='accordion"+ uniq +"'>";
+            for (var i = 1; i <= nb_collapse; i++) {
                 txt +=
                   "<div class='card'>" +
                   "    <div class='card-header' id='heading" +
@@ -82,15 +82,14 @@ const components = [
             txt += "</div>";
             return txt;
         },
-
     },
     {
-        id:1,
+        id: 1,
         name: "alert",
-        params : true,
+        params: true,
         code: function() {
-            var close = (document.querySelector('input[name="close"]:checked').value == "1")?
-            "<button type='button' class='close m-auto' data-dismiss='alert'"+
+            var close = (document.querySelector('input[name="close"]:checked').value == "1")
+                ? "<button type='button' class='close m-auto' data-dismiss='alert'" +
             " aria-label='Close'><span aria-hidden='true'>&times;</span></button>" : "";
             return "<div class='alert alert-" + document.getElementById('alert_type').value +
              "'>" + close + "Alert contents!</div>";
@@ -99,7 +98,7 @@ const components = [
     {
         id: 2,
         name: "button",
-        params : true,
+        params: true,
         code: function () {
             var nb_btns = document.getElementById('button_nb').value;
             var type = document.getElementById('button_type').value;
@@ -125,7 +124,7 @@ const components = [
                 var nb_items = document.getElementById('button_dropdown_nb').value;
                 if (nb_items >= 0) {
                     for (var i = 1; i <= nb_items; i++) {
-                        btn_html += "<a class='dropdown-item' href='#'>Sub Item #" + i +"</a>";
+                        btn_html += "<a class='dropdown-item' href='#'>Sub Item #" + i + "</a>";
                     }
                 }
                 btn_html += "</div></div>";
@@ -136,8 +135,9 @@ const components = [
                     txt += btn_html;
                 }
             }
-            txt = (dropdown === null) ? txt : ((size == "block") ? "<div style='display: grid;'>" + txt + "</div>" :
-            "<div style='display: flex; flex-wrap: wrap;'>" + txt + "</div>");
+            txt = (dropdown === null) ? txt : ((size == "block")
+                ? "<div style='display: grid;'>" + txt + "</div>"
+                : "<div style='display: flex; flex-wrap: wrap;'>" + txt + "</div>");
             return txt;
         },
     },
@@ -145,18 +145,20 @@ const components = [
         id: 3,
         params: false,
         name: "jumbotron",
-        code: function() {return "<div class='jumbotron' style='background-color: #e9ecef;'><h1>Hello, world!</h1>" +
-        "<p class='lead'>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to"+
-        " featured content or information.</p>" +
-        "<hr/><p>It uses utility classes for typography and spacing to space content out within the larger container.</p>" +
-        "<a class='btn btn-primary btn-lg' href='#' role='button'>Learn more</a>" +
-    "</div>";},
+        code: function() {
+            return "<div class='jumbotron' style='background-color: #e9ecef;'><h1>Hello, world!</h1>" +
+                "<p class='lead'>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to" +
+                " featured content or information.</p>" +
+                "<hr/><p>It uses utility classes for typography and spacing to space content out within the larger container.</p>" +
+                "<a class='btn btn-primary btn-lg' href='#' role='button'>Learn more</a>" +
+            "</div>";
+        },
     },
     {
         id:4,
         name: "nav",
         params : true,
-        code: function () {
+        code: function() {
             var nb_links = document.getElementById('nav_nb').value;
             var txt = "<ul class='nav nav-pills' style='list-style: none;'><li class='nav-item'>" +
                 "<a href='#' class='nav-link active' style='border: 1px solid white;'>Tabs #1</a></li>";
@@ -171,10 +173,10 @@ const components = [
         },
     },
     {
-        id:5,
-        params:true,
+        id: 5,
+        params: true,
         name: "card",
-        code: function () {
+        code: function() {
             var nb_cards = document.getElementById('card_nb').value;
             var card_background = document.getElementById('card_background').value;
             var card_display = document.querySelector('input[name="card_display"]:checked').value;

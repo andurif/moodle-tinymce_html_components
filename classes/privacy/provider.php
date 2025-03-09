@@ -35,14 +35,20 @@ use core_privacy\local\metadata\collection;
  * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements \core_privacy\local\metadata\provider {
-    public static function get_metadata(collection $collection): collection {
 
+    /**
+     * Returns metadata about this system.
+     *
+     * @param collection $collection The initialised collection to add items to.
+     * @return collection A listing of user data stored through this system.
+     */
+    public static function get_metadata(collection $collection): collection {
         // Here you will add more items into the collection.
-        $collection -> add_database_table(
+        $collection->add_database_table(
             'tiny_html_components_custom',
             [
-                'userid'=>'privacy:metadata:tiny_html_components_custom:userid',
-                'content'=>'privacy:metadata:tiny_html_components_custom:content'
+                'userid' => 'privacy:metadata:tiny_html_components_custom:userid',
+                'content' => 'privacy:metadata:tiny_html_components_custom:content'
             ],
             'privacy:metadata:tiny_html_components_custom'
         );

@@ -31,12 +31,9 @@ import ModalEvents from 'core/modal_events';
 import ModalFactory from 'core/modal_factory';
 import {components} from 'tiny_html_components/components';
 
-
-
 export const handleAction = (editor) => {
     displayDialogue(editor);
 };
-
 
 /**
  * Get the template context for the dialogue.
@@ -54,24 +51,22 @@ const getTemplateContext = async(editor) => {
         promise.push(
         getString(item.name,'tiny_html_components'));
     });
-    if(typeof getCustomComponents(editor) !== 'undefined'){
+    if (typeof getCustomComponents(editor) !== 'undefined') {
         customComponent = JSON.parse(getCustomComponents(editor));
         customGroup = true;
     }
     await Promise.all(promise)
-    .then ((values)=>{
+    .then((values)=> {
         values.forEach((element,index) => {
-            let params ={};
+            let params = {};
             params.id = components[index].id;
             params.string = element;
             selectList.push(params);
         });
     });
-    const customUrl = await url.fileUrl("/lib/editor/tiny/plugins/html_components/custom_components.php","");
-    return Object.assign({},{selectList},{customUrl},{customComponent},{customGroup});
+    const customUrl = await url.fileUrl("/lib/editor/tiny/plugins/html_components/custom_components.php", "");
+    return Object.assign({}, {selectList}, {customUrl}, {customComponent}, {customGroup});
 };
-
-
 
 /**
  * Generate and diplay the Dialogue, then add eventListeners.
@@ -90,13 +85,13 @@ const displayDialogue = async(editor) => {
     root.addEventListener('change', (event) => {
         handleModalChange(event, modal, editor);
     });
-    $root.on(ModalEvents.save,(event,modal)=>{
+    $root.on(ModalEvents.save, (event,modal)=>{
         handleDialogueSubmission(editor, modal);
     });
 };
 
 /**
- * Handle the change in options and adjust correlated preview at the same time
+ * Handle the change in options and adjust correlated preview at the same time.
  * @param {Event} event
  * @param {Modal} modal
  */
@@ -104,36 +99,34 @@ const handleModalChange = async (event,modal) => {
     const preview = modal.getRoot()[0].querySelector('#component_preview');
     const options = modal.getRoot()[0].querySelector('#options-placeholder');
     switch(event.target.dataset.holder){
-        case 'component-selector':{
+        case 'component-selector': {
             preview.innerHTML = "";
             const selected = components[event.target.value];
-            if(event.target.value == 'custom'){
+            if (event.target.value == 'custom') {
                 var txt = document.createElement("textarea");
                 txt.innerHTML = event.target.options[event.target.selectedIndex].dataset.content;
                 preview.innerHTML = txt.value + '&nbsp';
-            }
-            else{
-                if(selected.params){
-                    await Templates.renderForPromise(`tiny_html_components/components/${selected.name}`,{})
-                    .then(({html,js})=>{
-                        Templates.replaceNodeContents('#options-placeholder',html,js);
+            } else {
+                if (selected.params) {
+                    await Templates.renderForPromise(`tiny_html_components/components/${selected.name}`, {})
+                    .then(({html,js})=> {
+                        Templates.replaceNodeContents('#options-placeholder', html, js);
                     }).catch((error) => displayException(error));
-                }
-                else {
+                } else {
                     options.innerHTML = "";
                 }
                 preview.innerHTML = selected.code() + '&nbsp';
             }
-        break;
+            break;
         }
-        case 'params':{
+        case 'params': {
             refreshPreview(preview);
-        break;
+            break;
         }
-        case 'options':{
-                toggleTargetVisibility(event,'toggle');
-                refreshPreview(preview);
-        break;
+        case 'options': {
+            toggleTargetVisibility(event,'toggle');
+            refreshPreview(preview);
+            break;
         }
     }
 };
@@ -144,20 +137,19 @@ const handleModalChange = async (event,modal) => {
  * @param {Modal} modal
  */
 const handleDialogueSubmission = (editor,modal) => {
-
    const contentToAdd = modal.getRoot()[0].querySelector('#component_preview');
     editor.insertContent(contentToAdd.innerHTML);
     editor.save();
     modal.destroy();
 };
 
-const refreshPreview =(preview)=>{
+const refreshPreview = (preview)=> {
     preview.innerHTML= "";
     let parentComp = components[document.getElementById('component').value];
     preview.innerHTML =  parentComp.code() + '&nbsp';
 };
 
-const toggleTargetVisibility= (event) =>{
+const toggleTargetVisibility = (event) => {
     const target = event.target.dataset.target;
     const element = document.getElementById(target);
     element.classList.toggle('d-none');

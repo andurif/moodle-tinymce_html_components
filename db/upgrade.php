@@ -25,6 +25,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Function to upgrade tiny_html_components plugin.
+ *
+ * @param int $oldversion the version we are upgrading from
+ * @return bool result
+ */
 function xmldb_tiny_html_components_upgrade($oldversion) {
     global $CFG, $DB;
 
@@ -53,7 +59,7 @@ function xmldb_tiny_html_components_upgrade($oldversion) {
         $table->add_field('name', XMLDB_TYPE_TEXT, 255, null, true, null, null);
         $table->add_field('content', XMLDB_TYPE_TEXT, null, null, false, null, null);
         $pk = new xmldb_key('primary');
-        $pk->set_attributes(XMLDB_KEY_PRIMARY, array('id'), null, null);
+        $pk->set_attributes(XMLDB_KEY_PRIMARY, ['id'], null, null);
         $table->addKey($pk);
 
         if (!$dbman->table_exists($table->getName())) {

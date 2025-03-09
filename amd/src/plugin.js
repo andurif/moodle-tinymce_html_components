@@ -62,6 +62,10 @@ import * as Configuration from "./configuration";
 import * as Options from "./options";
 
 // Async function to initialize the plugin.
+/**
+ * Init function.
+ * @returns {Promise<(string|{configure?: function(*): {toolbar: *, menu: *}})[]>}
+ */
 async function initPlugin() {
   const [tinyMCE, setupCommands, pluginMetadata] = await Promise.all([
     getTinyMCE(),

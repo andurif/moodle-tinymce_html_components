@@ -32,29 +32,36 @@ require_once("$CFG->libdir/formslib.php");
  * @copyright 2025 Cédric Gerbault, Anthony Durif, Université Clermont Auvergne
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class custom_component_form extends moodleform
-{
-    protected function definition()
-    {
+class custom_component_form extends moodleform {
+
+    /**
+     * Form definition.
+     *
+     * @return void
+     * @throws coding_exception
+     */
+    protected function definition() {
         $mform = $this->_form;
         $component = $this->_customdata['component'];
 
-        $preview = ($component->content) ? $component->content : get_string('custom_components_preview_msg', 'tiny_html_components');
+        $preview = ($component->content) ?? get_string('custom_components_preview_msg', 'tiny_html_components');
 
         $mform->addElement('html', html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'),
-            get_string('custom_components_back', 'tiny_html_components'), array('class' => 'pull-right btn btn-secondary')));
+            get_string('custom_components_back', 'tiny_html_components'), ['class' => 'pull-right btn btn-secondary']));
 
         $mform->addElement('header', 'creation', get_string('custom_components_construct', 'tiny_html_components'));
-        $name = $mform->addElement('text','name', get_string('custom_components_name', 'tiny_html_components'));
+        $name = $mform->addElement('text', 'name', get_string('custom_components_name', 'tiny_html_components'));
         $mform->addHelpButton('name', 'custom_components_name', 'tiny_html_components');
         $mform->addRule('name', get_string('missingfullname'), 'required', null, 'client');
         $mform->setType('name', PARAM_TEXT);
 
         $mform->setDefault('name', $component->name);
-        $editor = $mform->createElement('editor', 'content', get_string('custom_components_content', 'tiny_html_components'), array('rows' => 10), array('maxfiles' => EDITOR_UNLIMITED_FILES,
-            'noclean' => true, 'context' => $this->context, 'subdirs' => true));
+        $editor = $mform->createElement('editor', 'content', get_string('custom_components_content', 'tiny_html_components'),
+            ['rows' => 10],
+            ['maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $this->context, 'subdirs' => true]
+        );
         if ($component) {
-            $editor->setValue(array('text' => $component->content)); // Set the default value.
+            $editor->setValue(['text' => $component->content]); // Set the default value.
         }
         $mform->addElement($editor);
         $mform->setType('content', PARAM_RAW);
@@ -65,9 +72,5 @@ class custom_component_form extends moodleform
         $mform->addElement('html', $preview);
 
         $this->add_action_buttons(get_string('cancel'), get_string('save'));
-    }
-
-    public function validation($data, $files)
-    {
     }
 }

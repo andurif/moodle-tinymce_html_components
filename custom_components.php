@@ -39,7 +39,7 @@ $PAGE->set_pagelayout('standard');
 $PAGE->set_url('/lib/editor/tiny/plugins/html_components/custom_components.php');
 $PAGE->set_title(fullname($USER));
 $PAGE->set_heading($PAGE->title);
-$PAGE->navbar->add(get_string('profile','moodle'), new moodle_url('/user/profile.php', array('id' => $USER->id)));
+$PAGE->navbar->add(get_string('profile', 'moodle'), new moodle_url('/user/profile.php', ['id' => $USER->id]));
 $PAGE->navbar->add('Composants Tiny customs', new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
 
 echo $OUTPUT->header();
@@ -48,30 +48,29 @@ echo html_writer::tag('h2', get_string('custom_components_link', 'tiny_html_comp
 
 if ($deleteid) {
     try {
-        $DB->delete_records('tiny_html_components_custom', array('id' => $deleteid));
-    }
-    catch (Exception $e) {
+        $DB->delete_records('tiny_html_components_custom', ['id' => $deleteid]);
+    } catch (Exception $e) {
         throw new Exception($e->getMessage());
     }
 }
 
-$customs = $DB->get_records('tiny_html_components_custom', array('userid' => $USER->id), 'name ASC');
+$customs = $DB->get_records('tiny_html_components_custom', ['userid' => $USER->id], 'name ASC');
 echo html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php'),
-        get_string('custom_components_create', 'tiny_html_components'), array('class' => 'btn btn-outline-info pull-right'));
+        get_string('custom_components_create', 'tiny_html_components'), ['class' => 'btn btn-outline-info pull-right']);
 
 if ($customs) {
-    echo html_writer::start_tag('fieldset', array('style' => 'margin-top: 50px;'));
-    echo html_writer::start_tag('table', array('class' => 'table table-condensed'));
+    echo html_writer::start_tag('fieldset', ['style' => 'margin-top: 50px;']);
+    echo html_writer::start_tag('table', ['class' => 'table table-condensed']);
     foreach ($customs as $custom) {
         echo html_writer::start_tag('tr');
-        echo html_writer::tag('td', $custom->name, array('width' => '60%'));
+        echo html_writer::tag('td', $custom->name, ['width' => '60%']);
         echo html_writer::start_tag('td');
         echo html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php',
-            array('id' => $custom->id)), get_string('custom_components_edit', 'tiny_html_components'), array('class' => 'btn btn-outline-secondary'));
+            ['id' => $custom->id]), get_string('custom_components_edit', 'tiny_html_components'), ['class' => 'btn btn-outline-secondary']);
         echo html_writer::end_tag('td');
         echo html_writer::start_tag('td');
         echo html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php',
-            array('deleteid' => $custom->id)), get_string('custom_components_delete', 'tiny_html_components'), array('class' => 'btn btn-outline-secondary'));
+            ['deleteid' => $custom->id]), get_string('custom_components_delete', 'tiny_html_components'), ['class' => 'btn btn-outline-secondary']);
         echo html_writer::end_tag('td');
         echo html_writer::end_tag('tr');
     }
