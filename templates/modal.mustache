@@ -14,6 +14,36 @@
     You should have received a copy of the GNU General Public License
     along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 }}
+{{!
+    @template tiny_html_component/modal
+
+    Modal to add a generated HTML component within the Tiny Editor.
+
+    Classes required for JS:
+    * none
+
+    Data attributes required for JS:
+    * none
+
+    Context variables required for this template:
+
+    Example context (json):
+    {
+       "selectList": {
+            "id" => "id_component",
+            "string" => "Component name",
+        },
+        "customGroup": {
+            "customComponent": {
+                "value" => "custom",
+                "custom-component" => "Custom compontent",
+                "custom-component-content" => "<div>HTMLL component content</div>",
+                "name" => "Component name",
+            },
+        },
+        "customUrl": "http://url.com",
+    }
+}}
 
 {{< core/modal }}
 
@@ -27,7 +57,7 @@
         <div class="form-group row">
             <label for="component" class="col-sm-3 col-form-label">{{#str}}component, tiny_html_components{{/str}}</label>
             <div class="col-sm-9">
-                <select  id="component" name="component" class="form-control" data-holder = "component-selector">
+                <select  id="component" name="component" class="form-control" data-holder="component-selector">
                     <!-- Components list, alphabetic sort -->
                     <option value=""> {{#str}}component_placeholder, tiny_html_components{{/str}}</option>
                     <optgroup label="{{#str}}basic_components, tiny_html_components{{/str}}">
@@ -38,7 +68,7 @@
                     {{#customGroup}}
                         <optgroup label="{{#str}}custom_components, tiny_html_components{{/str}}">
                             {{#customComponent}}
-                                <option value={{value}}  data-content ="{{custom-component-content}}">{{name}}</option>
+                                <option value={{value}}  data-content="{{custom-component-content}}">{{name}}</option>
                             {{/customComponent}}
                         </optgroup>
                     {{/customGroup}}
