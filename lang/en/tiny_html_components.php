@@ -81,6 +81,7 @@ $string['custom_components_content'] = 'Component content (HTML)';
 $string['custom_components_content_help'] = 'Content in HTML of the component you will construct throw the editor. That\'s will be inserted after the component selection.';
 $string['custom_components_create'] = 'Create a new custom component';
 $string['custom_components_delete'] = 'Delete the component';
+$string['custom_components_delete_wrong_user'] = 'You are not the owner of this component, so you cannot delete it.';
 $string['custom_components_edit'] = 'Edit the component';
 $string['custom_components_link'] = 'Manage your custom components';
 $string['custom_components_name'] = 'Component name';

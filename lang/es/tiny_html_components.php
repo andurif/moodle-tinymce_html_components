@@ -81,6 +81,7 @@ $string['custom_components_content'] = 'Contenido (HTML) del componente';
 $string['custom_components_content_help'] = 'Contenido en HTML del componente que construirás lanzando el editor. Eso se insertará después de la selección del componente.';
 $string['custom_components_create'] = 'Crear un componente persoalizado';
 $string['custom_components_delete'] = 'Borrar el componente';
+$string['custom_components_delete_wrong_user'] = 'No eres el propietario de este componente. Entonces no puedes borrarlo.';
 $string['custom_components_edit'] = 'Editar el componente';
 $string['custom_components_link'] = 'Administre sus componentes personalizados';
 $string['custom_components_name'] = 'Nombre del componente';

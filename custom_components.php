@@ -47,10 +47,17 @@ echo $OUTPUT->header();
 echo html_writer::tag('h2', get_string('custom_components_link', 'tiny_html_components'));
 
 if ($deleteid) {
-    try {
-        $DB->delete_records('tiny_html_components_custom', ['id' => $deleteid]);
-    } catch (Exception $e) {
-        throw new Exception($e->getMessage());
+    // Test if the component exists and if it is user's component.
+    $component = $DB->get_record('tiny_html_components_custom', ['id' => $deleteid], '*', MUST_EXIST);
+    if ($component->userid == $USER->id) {
+        try {
+            $DB->delete_records('tiny_html_components_custom', ['id' => $deleteid]);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    } else {
+        throw new moodle_exception('custom_components_delete_wrong_user', 'tiny_html_components',
+            new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'));
     }
 }
 

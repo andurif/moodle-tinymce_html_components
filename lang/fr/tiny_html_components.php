@@ -80,6 +80,7 @@ $string['custom_components_construct'] = 'Construction du composant';
 $string['custom_components_content'] = 'Contenu (HTML) du composant';
 $string['custom_components_content_help'] = 'Contenu du composant en HTML que vous allez construite via l\'éditeur. C\'est ce qui sera inséré à la sélection du composant.';
 $string['custom_components_delete'] = 'Supprimer le composant';
+$string['custom_components_delete_wrong_user'] = 'Vous n\'êtes pas le propriétaire de ce composant. Vous ne pouvez donc pas le supprimer.';
 $string['custom_components_create'] = 'Créer un nouveau composant personnalisé';
 $string['custom_components_edit'] = 'Editer le composant';
 $string['custom_components_link'] = 'Gérer vos composants personnalisés';
