@@ -34,7 +34,7 @@ $preview = optional_param('preview', 1, PARAM_BOOL);
 
 $PAGE->set_context($context);
 
-$PAGE->set_pagelayout('profile');
+$PAGE->set_pagelayout('base');
 if ($id) {
     $PAGE->set_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php', ['id' => $id]);
     $PAGE->set_title(fullname($USER));
@@ -42,9 +42,9 @@ if ($id) {
     $PAGE->navbar->add(get_string('profile', 'moodle'),
         new moodle_url('/user/profile.php', ['id' => $USER->id]));
     $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'),
-        new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
+        new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'));
     $PAGE->navbar->add(get_string('custom_components_edit', 'tiny_html_components'),
-        new moodle_url('lib/editor/tiny/plugins/html_components/edit_custom_components.php', ['id' => $id]));
+        new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_components.php', ['id' => $id]));
 } else {
     $PAGE->set_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php');
     $PAGE->set_title(fullname($USER));
@@ -52,7 +52,9 @@ if ($id) {
     $PAGE->navbar->add(get_string('profile', 'moodle'),
         new moodle_url('/user/profile.php', ['id' => $USER->id]));
     $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'),
-        new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
+        new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'));
+    $PAGE->navbar->add(get_string('custom_components_title', 'tiny_html_components'),
+        new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'));
 }
 
 echo $OUTPUT->header();

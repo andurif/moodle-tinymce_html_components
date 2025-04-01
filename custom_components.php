@@ -37,7 +37,7 @@ $sesskey = optional_param('sesskey', '_none_', PARAM_RAW);
 $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('base');
 $PAGE->set_url('/lib/editor/tiny/plugins/html_components/custom_components.php');
 $PAGE->set_title(fullname($USER));
 $PAGE->set_heading($PAGE->title);
