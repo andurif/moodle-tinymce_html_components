@@ -31,6 +31,8 @@ require(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/confi
 require_login();
 
 $deleteid = optional_param('deleteid', 0, PARAM_ALPHANUM);
+$confirm = optional_param('confirm', 0, PARAM_BOOL);
+$sesskey = optional_param('sesskey', '_none_', PARAM_RAW);
 
 $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
@@ -41,31 +43,50 @@ $PAGE->set_title(fullname($USER));
 $PAGE->set_heading($PAGE->title);
 $PAGE->navbar->add(get_string('profile', 'moodle'), new moodle_url('/user/profile.php', ['id' => $USER->id]));
 $PAGE->navbar->add('Composants Tiny customs', new moodle_url('lib/editor/tiny/plugins/html_components/custom_components.php'));
+$return = new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php');
 
 echo $OUTPUT->header();
 
 echo html_writer::tag('h2', get_string('custom_components_link', 'tiny_html_components'));
 
-if ($deleteid) {
+if ($deleteid && !$confirm) {
+    // Confirm the suppression ?
+    $optionsyes = [
+        'confirm' => 1,
+        'deleteid' => $deleteid,
+        'sesskey' => sesskey(),
+    ];
+
+    echo $OUTPUT->box_start('noticebox');
+    $formcontinue = new single_button(new moodle_url("/lib/editor/tiny/plugins/html_components/custom_components.php", $optionsyes), get_string('delete'), 'post', single_button::BUTTON_DANGER);
+    $formcancel = new single_button($return, get_string('cancel'), 'get');
+    echo $OUTPUT->confirm(get_string('custom_components_delete_confirm', 'tiny_html_components'), $formcontinue, $formcancel);
+    echo $OUTPUT->box_end();
+    echo $OUTPUT->footer();
+
+    exit;
+} elseif ($deleteid && confirm_sesskey()) {
+    // We confirmed the deletion.
     // Test if the component exists and if it is user's component.
     $component = $DB->get_record('tiny_html_components_custom', ['id' => $deleteid], '*', MUST_EXIST);
     if ($component->userid == $USER->id) {
         try {
             $DB->delete_records('tiny_html_components_custom', ['id' => $deleteid]);
+            redirect($return);
         } catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            throw new moodle_exception($e->getMessage());
         }
     } else {
-        throw new moodle_exception('custom_components_delete_wrong_user', 'tiny_html_components',
-            new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'));
+        throw new moodle_exception('custom_components_delete_wrong_user', 'tiny_html_components', $return);
     }
 }
 
 $customs = $DB->get_records('tiny_html_components_custom', ['userid' => $USER->id], 'name ASC');
 echo html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/edit_custom_component.php'),
-        get_string('custom_components_create', 'tiny_html_components'), ['class' => 'btn btn-outline-info pull-right']);
+        get_string('custom_components_create', 'tiny_html_components'), ['class' => 'btn btn-outline-info float-right']);
 
 if ($customs) {
+    // Display user's components.
     echo html_writer::start_tag('fieldset', ['style' => 'margin-top: 50px;']);
     echo html_writer::start_tag('table', ['class' => 'table table-condensed']);
     foreach ($customs as $custom) {
@@ -77,14 +98,12 @@ if ($customs) {
         echo html_writer::end_tag('td');
         echo html_writer::start_tag('td');
         echo html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php',
-            ['deleteid' => $custom->id]), get_string('custom_components_delete', 'tiny_html_components'), ['class' => 'btn btn-outline-secondary']);
+            ['deleteid' => $custom->id, 'sesskey' => sesskey()]), get_string('custom_components_delete', 'tiny_html_components'), ['class' => 'btn btn-outline-secondary']);
         echo html_writer::end_tag('td');
         echo html_writer::end_tag('tr');
     }
     echo html_writer::end_tag('table');
     echo html_writer::end_tag('fieldset');
-
-    echo "</table></fieldset>";
 }
 
 echo $OUTPUT->footer();

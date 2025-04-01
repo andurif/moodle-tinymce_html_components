@@ -47,7 +47,7 @@ class custom_component_form extends moodleform {
         $preview = ($component->content) ?? get_string('custom_components_preview_msg', 'tiny_html_components');
 
         $mform->addElement('html', html_writer::link(new moodle_url('/lib/editor/tiny/plugins/html_components/custom_components.php'),
-            get_string('custom_components_back', 'tiny_html_components'), ['class' => 'pull-right btn btn-secondary']));
+            get_string('custom_components_back', 'tiny_html_components'), ['class' => 'float-right btn btn-secondary']));
 
         $mform->addElement('header', 'creation', get_string('custom_components_construct', 'tiny_html_components'));
         $name = $mform->addElement('text', 'name', get_string('custom_components_name', 'tiny_html_components'));
