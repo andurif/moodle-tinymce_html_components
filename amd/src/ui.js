@@ -23,7 +23,7 @@
 
 import Templates from 'core/templates';
 import url from 'core/url';
-import  {getCustomComponents} from './options';
+import {getCustomComponents} from './options';
 import {get_string as getString} from 'core/str';
 import {exception as displayException} from 'core/notification';
 import Modal from 'tiny_html_components/modal';

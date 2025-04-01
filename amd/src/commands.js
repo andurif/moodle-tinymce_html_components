@@ -20,46 +20,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// import {getButtonImage} from 'editor_tiny/utils';
-// import {handleAction} from './ui';
-// import {get_string as getString} from 'core/str';
-// import {
-//     component,
-//     buttonName,
-//     icon,
-// } from './common';
-
-// export const getSetup = async() => {
-//     const [
-//         buttonText,
-//         buttonImage,
-//     ] = await Promise.all([
-//         getString('addhtml_components', component),
-//         getButtonImage('icon', component),
-//     ]);
-
-//     return (editor) => {
-//         // Register the Filter WS Icon.
-//         editor.ui.registry.addIcon(icon, buttonImage.html);
-//         // Register the Menu Button.
-//         editor.ui.registry.addButton(buttonName, {
-//             icon,
-//             tooltip: buttonText,
-//             onAction: () => handleAction(editor),
-//         });
-
-//         // Add the Filter WS Menu Item.
-//         // This allows it to be added to a standard menu, or a context menu.
-//         editor.ui.registry.addMenuItem(buttonName, {
-//             icon,
-//             text: buttonText,
-//             onAction: () => handleAction(editor),
-//         });
-//     };
-// };
-
-/* eslint-disable no-console */
-
 define([
     'editor_tiny/utils',
     'core/str',

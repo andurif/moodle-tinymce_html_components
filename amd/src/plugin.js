@@ -20,39 +20,6 @@
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// import {getTinyMCE} from 'editor_tiny/loader';
-// import {getPluginMetadata} from 'editor_tiny/utils';
-
-// import {component, pluginName} from './common';
-// import * as Commands from './commands';
-// import * as Configuration from './configuration';
-// import * as Options from './options';
-
-
-// // Setup the tiny_html_components Plugin to add a button and menu option.
-// export default new Promise(async(resolve) => {
-//     const [
-//         tinyMCE,
-//         setupCommands,
-//         pluginMetadata,
-//     ] = await Promise.all([
-//         getTinyMCE(),
-//         Commands.getSetup(),
-//         getPluginMetadata(component, pluginName),
-//     ]);
-//     // Note: The PluginManager.add function does not accept a Promise.
-//     // Any asynchronous code must be run before this point.
-//     tinyMCE.PluginManager.add(`${component}/plugin`, (editor) => {
-//         Options.register(editor);
-//         // Setup the Commands (buttons, menu items, and so on).
-//         setupCommands(editor);
-//         return pluginMetadata;
-//     });
-//     // Resolve the htmltiny_html_components Plugin and include configuration.
-//     resolve([`${component}/plugin`, Configuration]);
-// });
-
-
 import { getTinyMCE } from "editor_tiny/loader";
 import { getPluginMetadata } from "editor_tiny/utils";
 
