@@ -36,7 +36,7 @@ $deleteid = optional_param('deleteid', 0, PARAM_ALPHANUM);
 $context = context_user::instance($USER->id);
 $PAGE->set_context($context);
 
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('base');
 $PAGE->set_url('/lib/editor/tinymce/plugins/htlm_components/custom_components.php');
 $PAGE->set_title(fullname($USER));
 $PAGE->set_heading($PAGE->title);
@@ -78,8 +78,6 @@ if ($customs) {
     }
     echo html_writer::end_tag('table');
     echo html_writer::end_tag('fieldset');
-
-    echo "</table></fieldset>";
 }
 
 echo $OUTPUT->footer();
