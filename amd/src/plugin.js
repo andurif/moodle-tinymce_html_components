@@ -55,6 +55,7 @@ export default new Promise((resolve) => {
   initPlugin()
     .then(resolve)
     .catch((err) => {
+      /* eslint-disable no-console */
       console.error("Error initializing plugin:", err);
     });
 });

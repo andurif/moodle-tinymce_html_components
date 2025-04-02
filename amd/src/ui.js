@@ -65,7 +65,8 @@ const getTemplateContext = async(editor) => {
         });
     });
     const customUrl = await url.fileUrl("/lib/editor/tiny/plugins/html_components/custom_components.php", "");
-    return Object.assign({}, {selectList}, {customUrl}, {customComponent}, {customGroup});
+    const customImgUrl = await url.imageUrl("card-placeholder", "tiny_html_components");
+    return Object.assign({}, {selectList}, {customUrl}, {customComponent}, {customGroup}, {customImgUrl});
 };
 
 /**

@@ -184,12 +184,14 @@ const components = [
             document.querySelector('input[name="card_orientation"]:checked').value;
             var card_disposition = document.getElementById('card_disposition').value;
             var div_class = "col-xl-" + Math.round(12/card_disposition) + " col-lg-" +
-                 Math.round(12/card_disposition) + " col-sm-"+Math.round(12/card_disposition)+" col-xs-" +Math.round(12/card_disposition);
+                 Math.round(12/card_disposition) + " col-sm-" + Math.round(12/card_disposition) +
+                " col-xs-" + Math.round(12/card_disposition);
             var card_class = (card_background == "image" || card_background == "classic") ? "" :
             "text-white bg-" + card_background;
-            var btn_class = (card_background == "image" || card_background == "secondary" || card_background == "classic")
-            ? "primary" : "light";
-            var background = (card_background == "image") ? "<img src='/lib/editor/tiny/plugins/html_components/pix/card-placeholder.png'"+
+            var btn_class = (card_background == "image" || card_background == "secondary"
+                || card_background == "classic") ? "primary" : "light";
+            var img_url = document.getElementById('component').getAttribute('data-default-img');
+            var background = (card_background == "image") ? "<img src='" + img_url + "'"+
             " class='card-img-top img-fluid' alt=''>" : "<div class='card-header'>CARD HEADER</div>" ;
             if (card_orientation == "portrait") {
                 var card_html = "<div class='" + div_class +"' style='margin-bottom: 20px;'>";

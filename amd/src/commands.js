@@ -27,7 +27,7 @@ define([
     'tiny_html_components/common'
 ], function(utils, str, ui, common) {
     'use strict';
-
+    /* eslint-disable no-console */
     console.log("working: tiny_html_components/commands is loaded");
 
     const {getButtonImage} = utils;
