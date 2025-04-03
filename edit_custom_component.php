@@ -24,9 +24,6 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-use core_competency\api;
-use core_competency\external\performance_helper;
-
 require(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/config.php');
 require_once('custom_component_form.php');
 

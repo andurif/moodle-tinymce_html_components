@@ -18,14 +18,11 @@
 /**
  * Page to list custom components of tinymce html_components plugin.
  *
- * @package    tinymce_html_components
+ * @package tinymce_html_components
  * @author  2021 Anthony Durif
  * @copyright 2021 Anthony Durif, Université Clermont Auvergne
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-
-use core_competency\api;
-use core_competency\external\performance_helper;
 
 require(dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))) . '/config.php');
 
